@@ -7,6 +7,7 @@ import { searchPictures } from 'shared/services/pictures-api';
 import Button from 'shared/components/Button/Button/Button';
 import Modal from 'shared/components/Button/Modal/Modal';
 import LargeImage from './ImageGallery/LargeImage/LargeImage';
+import Loader from 'shared/components/Loader/Loader';
 
 class Pictures extends Component {
   state = {
@@ -89,7 +90,7 @@ class Pictures extends Component {
       <div className={css.App}>
         <Searchbar onSubmit={searchPictures} />
         <ImageGallery pictures={pictures} showPicture={showPicture} />
-        {loading && <p>...loading</p>}
+        {loading && <Loader />}
         {error && <p>Something goes wrong...</p>}
         {Boolean(pictures.length) && <Button onClick={loadMore} />}
         {showModal && (
