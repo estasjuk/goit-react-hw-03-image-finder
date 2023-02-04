@@ -1,21 +1,16 @@
 import PropTypes from 'prop-types';
 
 import css from './ImageGallery.module.css';
-//import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ pictures, showPicture }) => {
   const elements = pictures.map(({ id, largeImageURL, tags, webformatURL }) => (
-    <li
+    <ImageGalleryItem
       key={id}
-      onClick={() => showPicture({ largeImageURL, tags })}
-      className={css.ImageGalleryItem}
-    >
-      <img
-        className={css.ImageGalleryItemImage}
-        src={webformatURL}
-        alt={tags}
-      />
-    </li>
+      webformatURL={webformatURL}
+      tags={tags}
+      onClick={() => showPicture({ largeImageURL })}
+    />
   ));
 
   return <ul className={css.ImageGallery}>{elements}</ul>;
