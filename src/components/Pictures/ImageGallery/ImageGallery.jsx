@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 
-import css from '../Pictures.module.css';
-//import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import css from './ImageGallery.module.css';
+import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
 
 const ImageGallery = ({ pictures, showPicture }) => {
-  const elements = pictures.map(({ id, webformatURL, largeImageURL, tags }) => (
+  const elements = pictures.map(({ id, largeImageURL, tags, webformatURL }) => (
     <li
       key={id}
       onClick={() => showPicture({ largeImageURL, tags })}
@@ -27,4 +27,14 @@ ImageGallery.defaultProps = {
   pictures: [],
 };
 
-ImageGallery.propTypes = {};
+ImageGallery.propTypes = {
+  pictures: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      largeImageURL: PropTypes.string.isRequired,
+      webformatURL: PropTypes.string.isRequired,
+      tags: PropTypes.string.isRequired,
+    })
+  ),
+  showPicture: PropTypes.func.isRequired,
+};

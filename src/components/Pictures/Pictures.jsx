@@ -5,7 +5,7 @@ import Searchbar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import { searchPictures } from 'shared/services/pictures-api';
 import Button from 'shared/components/Button/Button/Button';
-import Modal from 'shared/components/Button/Modal/Modal';
+import Modal from 'shared/components/Modal/Modal';
 import LargeImage from './ImageGallery/LargeImage/LargeImage';
 import Loader from 'shared/components/Loader/Loader';
 
@@ -36,7 +36,6 @@ class Pictures extends Component {
       this.setState(({ pictures }) => ({
         pictures: [...pictures, ...data.hits],
       }));
-      console.log(data.hits);
       this.checkData(data);
     } catch (error) {
       this.setState(error => error.message);
@@ -69,11 +68,10 @@ class Pictures extends Component {
     }));
   };
 
-  showPicture = ({ largeImageURL, tags }) => {
+  showPicture = ({ largeImageURL }) => {
     this.setState({
       largeImage: {
         largeImageURL,
-        tags,
       },
       showModal: true,
     });
